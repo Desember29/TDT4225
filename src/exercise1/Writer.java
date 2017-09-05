@@ -19,14 +19,14 @@ public class Writer {
 				out = Files.newByteChannel(file,EnumSet.of(CREATE, APPEND));
 				
 				//Make a marker of start time for file creation
-				double startTime = System.currentTimeMillis();
+				long startTime = System.currentTimeMillis();
 				for (int n = 0; n < NBLOCKS * fileSize; n++) {
 					ByteBuffer buff = ByteBuffer.allocate(BLOCKSIZE);					
 					out.write(buff);
 				}
 				//Time spent writing files
-				double totalTime = System.currentTimeMillis() - startTime;
-				int throughput = (int) (fileSize*1024/(totalTime/1000));
+				long totalTime = System.currentTimeMillis() - startTime;
+				int throughput = (int) (fileSize*1024/((double) totalTime/1000));
 				System.out.println(fileSize + " GB\t\t" + throughput + " MB/s\t" + (int) totalTime + " ms");
 			} catch (IOException e) {
 				e.printStackTrace();

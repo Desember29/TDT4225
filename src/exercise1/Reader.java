@@ -18,7 +18,7 @@ public class Reader {
 				in = Files.newByteChannel(file,EnumSet.of(READ));
 				
 				//Make a marker of start time for file reading
-				double startTime = System.currentTimeMillis();
+				long startTime = System.currentTimeMillis();
 				//Counter for how many bytes have been read
 				long totalBytes = 0;
 				ByteBuffer buff = ByteBuffer.allocate(BLOCKSIZE);
@@ -27,8 +27,8 @@ public class Reader {
 					buff.clear(); 
 				}
 				//Time spent reading file
-				double totalTime = System.currentTimeMillis() - startTime;
-				int throughput = (int) (fileSize*1024/(totalTime/1000));
+				long totalTime = System.currentTimeMillis() - startTime;
+				int throughput = (int) (fileSize*1024/((double) totalTime/1000));
 				System.out.println(fileSize + " GB\t\t" + throughput + "MB/s\t" + (int) totalTime + " ms");
 			} catch (IOException e) {
 				e.printStackTrace();
