@@ -27,7 +27,7 @@ public class Writer {
 				//Time spent writing files
 				double totalTime = System.currentTimeMillis() - startTime;
 				int throughput = (int) (fileSize*1024/(totalTime/1000));
-				System.out.println(fileSize + " GB\t\t" + throughput + "MB/s\t" + (int) totalTime + " ms");
+				System.out.println(fileSize + " GB\t\t" + throughput + " MB/s\t" + (int) totalTime + " ms");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
