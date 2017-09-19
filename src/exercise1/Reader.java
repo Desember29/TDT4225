@@ -25,13 +25,12 @@ public class Reader {
 				for (int n = 0; n < NBLOCKS * fileSize; n++) { 
 					int bytesRead = in.read(buff);
 					buff.clear(); 
-					totalBytes+=bytesRead;
+					totalBytes += bytesRead;
 				}
 				//Time spent reading file
 				long totalTime = System.currentTimeMillis() - startTime;
 				int throughput = (int) (fileSize*1024/((double) totalTime/1000));
-				int throughput2 = (int) ((totalBytes/(1024*1024))/((double) totalTime/1000));
-				System.out.println(fileSize + " GB\t\t" + throughput + "MB/s\t" + throughput2 + "MB/s\t" + (int) totalTime + " ms");
+				System.out.println(fileSize + " GB\t\t" + throughput + " MB/s\t" + (int) totalTime + " ms");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -39,7 +38,7 @@ public class Reader {
 	
 	public static void main(String[] args) {
 		Reader reader = new Reader();
-		System.out.println("EXT4/NIO\tThroughput\tThroughput2\tTime\n------------------------------------------------------------");
+		System.out.println("EXT4/NIO\tThroughput\tTime\n------------------------------------------------------------");
 		reader.readTest(1);
 		reader.readTest(2);
 		reader.readTest(4);
